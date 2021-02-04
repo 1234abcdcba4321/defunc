@@ -1,0 +1,2 @@
+# defunc
+Esolang page.
