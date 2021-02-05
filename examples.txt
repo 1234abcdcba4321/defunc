@@ -1,0 +1,12 @@
+ a?000a   (identity; allows putting spaces mostly without consequence)
+1+0   (literal 1; saves some space)
+|ab?abab   (max)
+&ab?abba   (min)
+ΣabAab0   (add)
+-abA0ab   (subtract)
+^be?e0*b^bA0e11 (b^e)
+/vb?bv0+/A0vbb (floor v/b)
+%vb?bvv%A0vbb (modulo)
+Lbv?v1+Lb/vb0 (floor logb v)
+!a?a1*a!A0a11 (factorial)
+

@@ -36,8 +36,9 @@ function split(str) {
     switch (str[i]) {
       case '0': d--; break;
       case '+': case '.': break;
+      case '*': d++; break;
       case 'A': d += 2; break;
-      case '?': case '*': d += 3; break;
+      case '?': d += 3; break;
       default:
         let def = defs.filter(x => x[0] == str[i])[0];
         for (let j = 1; j < def.length && !funcs.includes(def[j]) && !def.substring(1, j).includes(def[j]); j++)
@@ -72,7 +73,7 @@ function deFunc(str) {
       return n;
     case '?': return ( snip(str,0) > snip(str,1) ? snip(str,2) : snip(str,3) );
     case 'A': return snip(str,0) + Math.max(0,snip(str,1) - snip(str,2));
-    case '*': return snip(str,0)*Math.max(0,snip(str,1)-snip(str,3)) + snip(str,2);
+    case '*': return snip(str,0)*snip(str,1);
     default: //let the magic happen
       let d = 1;
       let def = defs.filter(x => x[0] == str[0])[0];
@@ -95,8 +96,9 @@ function verifyFunc(str) {
     switch (str[i]) {
       case '0': d--; break;
       case '+': case '.': break;
+      case '*': d++; break;
       case 'A': d += 2; break;
-      case '?': case '*': d += 3; break;
+      case '?': d += 3; break;
       default:
         if (!funcs.includes(str[i])) return false;
         let def = defs.filter(x => x[0] == str[i])[0];
@@ -130,8 +132,9 @@ function verifyDef(str) { //i have zero clue how this works
     switch (code[i]) {
       case '0': d--; break;
       case '+': case '.': break;
+      case '*': d++; break;
       case 'A': d += 2; break;
-      case '?': case '*': d += 3; break;
+      case '?': d += 3; break;
       default:
         let def = "";
         if (code[i] == str[0]) {
@@ -156,6 +159,6 @@ function verifyDef(str) { //i have zero clue how this works
     if (!vars.includes(tempvars[i])) vars += tempvars[i];
   funcs += str[0];
   defs.push(str);
-  if (isConst) consts[str[0]] = deFunc(str[0]);
+  if (isConst && !str.includes('.')) consts[str[0]] = deFunc(str[0]); //functions with . aren't added to const list
   return true;
 }

@@ -11,23 +11,21 @@
   <p>
     <br>Defunc is an esoteric functional programming language created by Obvious#5283.
     <br>Functions are called by putting the function name on the left and then the arguments to the right.
-    <br>Functions are defined by naming the new function, choosing variable names, and then writing the return value of the function (which must be another function)
-    <br>Valid variable names are any function that has not been defined earlier in the file. You can only reference functions defined earlier in the file; recursion allowed.
+    <br>Functions are defined by naming the new function, choosing variable names, and then writing the return value of the function (which must be another function).
+    <br>Valid variable names are any function that has not been defined; this also permanently reserved for the remainder of the program.
+    <br>You can only reference functions defined earlier in the file, though recursion is allowed.
     <br>All tokens are one character. This page uses UTF-8.
-    <br>Spaces in the code are ignored. Newlines separate functions.
+    <br>Newlines separate functions. All other characters, except the predefined functions 0+?.A*, are not special characters.
     <br>Numbers are standard javascript doubles; don't expect things to work perfectly above 2^53.
-    <br>Functions with 0 variables are automatically run as soon as they get parsed (value is stored in an object for efficiency)
-    <br>There are 4 builtin functions:
+    <br>There are 4 standard builtin functions:
     <br>  0 (returns numberical value 0)
     <br>  +a (returns a+1)
     <br>  ?abtf (if a>b, return t; else return f)
-    <br>  .a (returns and outputs a)
+    <br>  .a (outputs and returns a)
     <br>This implementation adds two more builtins for performance purposes (oh also these are code examples):
     <br>  Arci?ciA+rc+ir (if c>i, return r+c-i; else return r)
-    <br>  *abri?bi*Aar0br+ir (if b>i, return a*(b-i)+r; else return r)
-    <br>Some extra code examples (not builtin):
-    <br>  Ia?000a (identity)
-    <br>  |ab?abab (max)
+    <br>  *ab?b0Aa*aA0b+000 (return a*b)
+    <br><a href="examples.html">Some extra code examples</a>
   </p>
   <label>Code!</label><br>
   <textarea id="code" rows="20" style="width:90%" placeholder="Your code here"></textarea><br>
