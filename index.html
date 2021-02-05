@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Extended Defunc</title>
+  <meta name="description" content="Interpreter for Defunc esolang.">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>
+  <h1>Extended Defunc Interpreter</h1>
+  <p>
+    <br>Defunc is an esoteric functional programming language created by Obvious#5283.
+    <br>Functions are called by putting the function name on the left and then the arguments to the right.
+    <br>Functions are defined by naming the new function, choosing variable names, and then writing the return value of the function (which must be another function)
+    <br>Valid variable names are any function that has not been defined earlier in the file. You can only reference functions defined earlier in the file; recursion allowed.
+    <br>All tokens are one character. This page uses UTF-8.
+    <br>Spaces in the code are ignored. Newlines separate functions.
+    <br>Numbers are standard javascript doubles; don't expect things to work perfectly above 2^53.
+    <br>Functions with 0 variables are automatically run as soon as they get parsed (value is stored in an object for efficiency)
+    <br>There are 4 builtin functions:
+    <br>  0 (returns numberical value 0)
+    <br>  +a (returns a+1)
+    <br>  ?abtf (if a>b, return t; else return f)
+    <br>  .a (returns and outputs a)
+    <br>This implementation adds two more builtins for performance purposes (oh also these are code examples):
+    <br>  Arci?ciA+rc+ir (if c>i, return r+c-i; else return r)
+    <br>  *abri?bi*Aar0br+ir (if b>i, return a*(b-i)+r; else return r)
+    <br>Some extra code examples (not builtin):
+    <br>  Ia?000a (identity)
+    <br>  |ab?abab (max)
+  </p>
+  <label>Code!</label><br>
+  <textarea id="code" rows="20" style="width:90%" placeholder="Your code here"></textarea><br>
+  <label>Output as characters? (default is numbers)</label><input type="checkbox" id="outputtype"><br>
+  <label>Disable errors? (allows easy comments)</label><input type="checkbox" id="errors"><br>
+  <button onclick="run()">Run</button><br>
+  <label>Output.</label><br>
+  <textarea id="output" rows="3" style="width:90%">If you're new to this, try making something to print 174562342783. Or "Hello World!".</textarea>
+
+  <script src="main.js"></script>
+</body>
+</html>
