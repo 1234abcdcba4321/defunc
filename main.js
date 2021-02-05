@@ -1,15 +1,15 @@
-"use strict"
+//"use strict"
 
 let output = document.getElementById("output");
 let vars = "";
-let funcs = "0+?.A*";
+let funcs = "";
 let defs = [];
 let doCharOutput = false;
 let consts = {};
 
 function run() {
   vars = ""
-  funcs = "0+?.A*"
+  funcs = "0+?.A*亂";
   defs = [];
   output.value = "";
   consts = {'0':0};
@@ -35,10 +35,10 @@ function split(str) {
   for (let i=0;i<str.length;i++) {
     switch (str[i]) {
       case '0': d--; break;
-      case '+': case '.': break;
-      case '*': d++; break;
-      case 'A': d += 2; break;
-      case '?': d += 3; break;
+      case '?': d++;
+      case 'A': d++;
+      case '*': d++;
+      case '+': case '.': case '亂': break;
       default:
         let def = defs.filter(x => x[0] == str[i])[0];
         for (let j = 1; j < def.length && !funcs.includes(def[j]) && !def.substring(1, j).includes(def[j]); j++)
@@ -74,6 +74,7 @@ function deFunc(str) {
     case '?': return ( snip(str,0) > snip(str,1) ? snip(str,2) : snip(str,3) );
     case 'A': return snip(str,0) + Math.max(0,snip(str,1) - snip(str,2));
     case '*': return snip(str,0)*snip(str,1);
+    case '亂': return Math.floor(Math.random()*(snip(str,0)+1));
     default: //let the magic happen
       let d = 1;
       let def = defs.filter(x => x[0] == str[0])[0];
@@ -91,15 +92,16 @@ function deFunc(str) {
 
 function verifyFunc(str) {
   let d=1;
-  
+  console.log(str);
   for (let i=0;i<str.length;i++) {
     switch (str[i]) {
       case '0': d--; break;
-      case '+': case '.': break;
-      case '*': d++; break;
-      case 'A': d += 2; break;
-      case '?': d += 3; break;
+      case '?': d++;
+      case 'A': d++;
+      case '*': d++;
+      case '+': case '.': case '亂': break;
       default:
+      console.log(str[i]);
         if (!funcs.includes(str[i])) return false;
         let def = defs.filter(x => x[0] == str[i])[0];
         for (let j = 1; j < def.length && !funcs.includes(def[j]) && !def.substring(1, j).includes(def[j]); j++)
@@ -131,10 +133,10 @@ function verifyDef(str) { //i have zero clue how this works
   for (let i=0;i<code.length;i++) {
     switch (code[i]) {
       case '0': d--; break;
-      case '+': case '.': break;
-      case '*': d++; break;
-      case 'A': d += 2; break;
-      case '?': d += 3; break;
+      case '?': d++;
+      case 'A': d++;
+      case '*': d++;
+      case '+': case '.': case '亂': break;
       default:
         let def = "";
         if (code[i] == str[0]) {
@@ -159,6 +161,6 @@ function verifyDef(str) { //i have zero clue how this works
     if (!vars.includes(tempvars[i])) vars += tempvars[i];
   funcs += str[0];
   defs.push(str);
-  if (isConst && !str.includes('.')) consts[str[0]] = deFunc(str[0]); //functions with . aren't added to const list
+  if (isConst && document.getElementById('consts').checked) consts[str[0]] = deFunc(str[0]);
   return true;
 }
