@@ -15,15 +15,15 @@
     <br>Valid variable names are any function that has not been defined; this also permanently reserved for the remainder of the program.
     <br>You can only reference functions defined earlier in the file, though recursion is allowed.
     <br>All tokens are one character. This page uses UTF-8.
-    <br>Newlines separate functions. All other characters, except the predefined functions 0+?.A*, are not special characters.
+    <br>Newlines separate functions. All other characters, except the predefined functions below, are not special characters.
     <br>Numbers are standard javascript doubles; don't expect things to work perfectly above 2^53.
-    <br>There are 4 standard builtin functions:
+    <br>There are 5 standard builtin functions:
     <br>  0 (returns numberical value 0)
     <br>  +a (returns a+1)
     <br>  ?abtf (if a>b, return t; else return f)
     <br>  .a (outputs and returns a)
     <br>  亂a (returns a random number in [0,a]) (that means "random" in chinese)
-    <br>This implementation adds two more builtins for performance purposes (oh also these are code examples):
+    <br>There are 2 more builtins, which can be replicated with existing functions: (they're here for performance purposes)
     <br>  Arci?ciA+rc+ir (if c>i, return r+c-i; else return r)
     <br>  *ab?b0Aa*aA0b+000 (return a*b)
     <br><a href="examples.html">Some extra code examples</a>
@@ -32,7 +32,7 @@
   <textarea id="code" rows="20" style="width:90%" placeholder="Your code here"></textarea><br>
   <label>Output as characters? (default is numbers)</label><input type="checkbox" id="outputtype"><br>
   <label>Disable errors? (allows easy comments)</label><input type="checkbox" id="errors"><br>
-  <label>Enable constants? (Saves performance but expects all 0 arg functions to be constant without . or 亂)</label><input type="checkbox" id="consts"><br>
+  <label>Enable constants? (Saves performance but expects all 0 arg functions to be constants (no . or 亂))</label><input type="checkbox" id="consts"><br>
   <button onclick="run()">Run</button><br>
   <label>Output.</label><br>
   <textarea id="output" rows="3" style="width:90%">If you're new to this, try making something to print 174562342783. Or "Hello World!".</textarea>
